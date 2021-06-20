@@ -1,0 +1,62 @@
+<div class="container">
+
+  
+
+  <h1>Sample reactive</h1>
+
+  
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+    
+
+    <p>
+
+      <label for="name">Name:</label>
+
+      <input type="text" id="name" name="name"  class="form-control">
+
+      <label for="name">Dept Name:</label>
+      <input type="text" id="name" name="name" formControlName="name" class="form-control">
+
+      <label for="name">Dept id:</label>
+      <input type="number" id="name" name="name" formControlName="name" class="form-control">
+
+    </p>
+    <table class="table table-bordered" formArrayName="hobbies">
+
+      <tr>
+
+        <th colspan="2">Add Multiple Hobbies:</th>
+        <th width="150px"><button type="button" (click)="addHobby()" class="btn">Add</button></th>
+
+      </tr>
+
+      <tr *ngFor="let hobby of hobbies().controls; let i=index" [formGroupName]="i">
+
+        <td>
+
+            Hobby :
+
+            <input type="text" formControlName="qty" class="form-control">
+
+        </td>
+        <td>
+
+            <button (click)="removeHobby(i)" class="btn">Remove</button>
+
+        </td>
+
+      </tr>
+
+    </table>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+
+  </form>
+
+  <br/>
+
+  {{this.productForm.value | json}}
+
+</div>
